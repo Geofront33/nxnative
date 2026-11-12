@@ -43,6 +43,10 @@
 "Rumble strength" = "震动强度";
 "Rumble cutoff" = "震动过滤阈值";
 "Press a button to join" = "按键加入";
+"Face button mapping" = "ABXY 按键映射";
+"By position" = "按位置";
+"By letter" = "按字母";
+"By letter matches Xbox A/B/X/Y to the game's letters. By position matches the Switch layout." = "按字母将 Xbox 的 A/B/X/Y 对应到游戏内的同名按键。按位置沿用 Switch 的按键布局。";
 "Switch 2 controllers" = "Switch 2 控制器";
 "Plays Joy-Con 2 and Pro Controller 2 over Bluetooth: hold Sync on one during the game to pair it. macOS asks once for Bluetooth access." = "通过蓝牙连接 Joy-Con 2 和 Pro Controller 2。游戏运行时长按控制器的同步按钮进行配对。macOS 首次连接时会请求蓝牙权限。";
 "Picture shape" = "画面比例";

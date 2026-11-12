@@ -40,6 +40,10 @@
 "120 fps" = "120 fps";
 "This Mac's: %@, %@" = "This Mac's: %@, %@";
 "Press a button to join" = "Press a button to join";
+"Face button mapping" = "Face button mapping";
+"By position" = "By position";
+"By letter" = "By letter";
+"By letter matches Xbox A/B/X/Y to the game's letters. By position matches the Switch layout." = "By letter matches Xbox A/B/X/Y to the game's letters. By position matches the Switch layout.";
 "The cloud save didn't come" = "The cloud save didn't come";
 "British English" = "British English";
 "Play Without It" = "Play Without It";

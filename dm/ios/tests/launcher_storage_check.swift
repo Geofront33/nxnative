@@ -71,6 +71,12 @@ import Foundation
         expect(String(cString: getenv("DM_FULLSCREEN")) == "1" && d.string(forKey: "launcher.DM_FULLSCREEN") == "1", "Fullscreen goes into the environment and is saved")
         mm.values["DM_FULLSCREEN"] = "0"; mm.apply()
         expect(String(cString: getenv("DM_FULLSCREEN")) == "0" && d.string(forKey: "launcher.DM_FULLSCREEN") == nil, "Window is the default: set to 0, not saved")
+        expect(mm.values["DM_PAD_LAYOUT"] == "position", "Face buttons default to Switch positions")
+        mm.values["DM_PAD_LAYOUT"] = "labels"; mm.apply()
+        expect(String(cString: getenv("DM_PAD_LAYOUT")) == "labels" && d.string(forKey: "launcher.DM_PAD_LAYOUT") == "labels", "Letter mapping reaches the host and is saved")
+        expect(LauncherModel(mac.settings, defaults: d).values["DM_PAD_LAYOUT"] == "labels", "The next launch restores the button mapping")
+        mm.values["DM_PAD_LAYOUT"] = "position"; mm.apply()
+        expect(String(cString: getenv("DM_PAD_LAYOUT")) == "position" && d.string(forKey: "launcher.DM_PAD_LAYOUT") == nil, "Position mapping restores the default")
         let macScale = mac.settings.first { $0.env == "DM_RENDER_SCALE" }!
         mm.values["DM_OPMODE"] = "1"
         expect(mm.rangeLabel(macScale, 1) == "1600 × 900 (100 %)" && mm.rangeLabel(macScale, 0.5) == "800 × 450 (50 %)", "docked size in pixels at 1.0 and 0.5")

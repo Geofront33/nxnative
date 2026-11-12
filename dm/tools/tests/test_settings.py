@@ -39,4 +39,22 @@ class UpscalerSetting(unittest.TestCase):
                 self.assertEqual(bool(up),shown,gid)
                 if up:self.assertEqual((up[0]['default'],up[0]['options']),('game',[['game',"Game's own"],['metalfx','MetalFX']]))
 
+
+class ControllerLayoutSetting(unittest.TestCase):
+    def test_button_layout_is_a_mac_only_choice(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(settings.nacp, 'languages', return_value=['en-US']):
+            with patch.dict(settings.os.environ, {'SETTINGS_PLATFORM': 'mac'}):
+                mac = settings.build('010056B015FE8000', tmp, 'unused')['settings']
+            with patch.dict(settings.os.environ, {'SETTINGS_PLATFORM': 'ios'}):
+                ios = settings.build('010056B015FE8000', tmp, 'unused')['settings']
+
+        layout = next(row for row in mac if row['env'] == 'DM_PAD_LAYOUT')
+        self.assertEqual(layout['kind'], 'choice')
+        self.assertEqual(layout['default'], 'position')
+        self.assertEqual(layout['options'], [['position', 'By position'], ['labels', 'By letter']])
+        self.assertEqual(layout['section'], 'Controls')
+        self.assertEqual(layout['level'], 'basic')
+        self.assertNotIn('DM_PAD_LAYOUT', [row['env'] for row in ios])
+
+
 if __name__=='__main__':unittest.main()
